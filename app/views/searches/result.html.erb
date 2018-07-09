@@ -1,0 +1,56 @@
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">検索結果</h1>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">内面</label>
+    <div class="col-sm-10">
+      <%= @result['Gift']['in'] %>
+      <%= @result['Sense']['in'] %>
+      <br>
+      <%= @result['Value']['Sense']['In'] %>
+      <%= @result['Value']['Gift']['In'] %>
+      <%= @result['Value']['Cycle']['In'] %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">外面</label>
+    <div class="col-sm-10">
+      <%= @result['Gift']['out'] %>
+      <%= @result['Sense']['out'] %>
+      <br>
+      <%= @result['Value']['Gift']['Out'] %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">大切にしているもの</label>
+    <div class="col-sm-10">
+      <%= @result['Value']['Contents']['1']['ContentsData'] %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">こう言われると嬉しい</label>
+    <div class="col-sm-10">
+      <%= @result['Value']['Contents']['2']['ContentsData'] %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">これを言われると深く傷つく</label>
+    <div class="col-sm-10">
+      <%= @result['Value']['Contents']['3']['ContentsData'] %>
+    </div>
+  </div>
+
+  <%= form_tag('/searches') do %>
+    <input type="hidden" value="<%= @year %>" name="favorite[year]" />
+    <input type="hidden" value="<%= @month %>" name="favorite[month]" />
+    <input type="hidden" value="<%= @day %>" name="favorite[day]" />
+    <input type="hidden" value="<%= @sex %>" name="favorite[sex]" />
+    <input type="text" value="" placeholder="name" name="favorite[name]" class="input-group mt-2" />
+    <%= submit_tag 'お気に入り保存', class: 'btn btn-danger mt-2' %>
+  <% end %>
+</main>

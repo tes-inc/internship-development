@@ -1,0 +1,15 @@
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">検索</h1>
+  </div>
+
+  <h2>生年月日入力</h2>
+
+  <%= form_tag('/searches/diagnosis') do %>
+    <input type="number" value="" placeholder="year" name="search[year]" class="input-group" />
+    <input type="number" value="" placeholder="month" name="search[month]" class="input-group mt-2" />
+    <input type="number" value="" placeholder="day" name="search[day]" class="input-group mt-2" />
+    <input type="number" value="" placeholder="sex" name="search[sex]" class="input-group mt-2" />
+    <%= submit_tag '送信', class: 'btn btn-danger mt-2' %>
+  <% end %>
+</main>
