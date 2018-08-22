@@ -9,6 +9,13 @@ Rails.application.routes.draw do
       post :diagnosis
     end
   end
+  resources :favorite do
+    collection do
+      get :edit
+    end
+  end
+    
+  
 
   root to: 'home#index'
 end

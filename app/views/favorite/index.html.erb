@@ -1,0 +1,35 @@
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">お気に入り</h1>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>名前</th>
+          <th>生年月日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% index = 1 %>
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td><%= index %></td>
+            <td>
+              <%= link_to favorite.name,
+                diagnosis_searches_path(search: { year: favorite.year, month: favorite.month, day: favorite.day, sex: favorite.sex}),
+                method: :post %>
+            </td>
+            <td><%= favorite.year %>/<%= favorite.month %>/<%= favorite.day %></td>
+          </tr>
+          <% index += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+    <form method "post" action="edit" class="button-to">
+
+    <div><input type="submit" value="削除" /></div></form>
+  </div>
+</main>
