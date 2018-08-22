@@ -6,7 +6,7 @@ class CreateFavorites < ActiveRecord::Migration[5.2]
       t.integer :year
       t.integer :month
       t.integer :day
-      t.integer :sex
+      t.text :sex
       t.timestamps
     end
   end

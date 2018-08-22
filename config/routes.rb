@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post :diagnosis
     end
   end
+  # resorces :posts
 
   root to: 'home#index'
 end
