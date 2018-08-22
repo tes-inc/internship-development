@@ -12,6 +12,7 @@
           <th>生年月日</th>
         </tr>
       </thead>
+      
       <tbody>
         <% index = 1 %>
         <% @favorites.each do |favorite| %>
@@ -28,8 +29,12 @@
         <% end %>
       </tbody>
     </table>
-    <form method "post" action="edit" class="button-to">
 
-    <div><input type="submit" value="削除" /></div></form>
+    <form action="favorite/edit" class="button-to">
+      <div>
+        <input type="submit" value="きにいらなくなった" />
+      </div>
+    </form>
+
   </div>
 </main>

@@ -4,6 +4,9 @@ class FavoriteController < ApplicationController
     def index
       @favorites = Favorite.where(user_id: current_user.id)
     end
+
+    def edit
+    end
       
   end
      
