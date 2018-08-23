@@ -22,7 +22,7 @@
                 method: :post %>
             </td>
             <td><%= favorite.year %>/<%= favorite.month %>/<%= favorite.day %></td>
-            <td><%= submit_tag '削除', class: 'btn btn-danger mt-2' %> </td>
+            <td><%= submit_tag '削除', link_to "", destroy_seaches_session_path, method: :delete, class: 'nav-link'  class: 'btn btn-danger mt-2'  %> </td>
           </tr>
           <% index += 1 %>
         <% end %>

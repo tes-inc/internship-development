@@ -9,7 +9,8 @@ Rails.application.routes.draw do
       post :diagnosis
     end
   end
-  resources :favorite  
+  
+  resources :favorite
   
   # resorces :posts
 
