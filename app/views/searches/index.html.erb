@@ -7,9 +7,9 @@
   <h2>生年月日入力</h2>
 
   <%= form_tag('/searches/diagnosis') do %>
-    西暦:<input type="number" min="1880" max="2200" oninput="this.value = Math.abs(this.value)" value="" placeholder="1997" name="search[year]" class="input-group" />
-    月:<input type="number" min="1" max="12" oninput="this.value = Math.abs(this.value)" value="" placeholder="1" name="search[month]" class="input-group mt-2" />
-    日:<input type="number" min="1" max="31" oninput="this.value = Math.abs(this.value)" value="" placeholder="1" name="search[day]" class="input-group mt-2" />
+    西暦:<input type="number" min="1880" max="2200" value="" placeholder="1997" name="search[year]" class="input-group" />
+    月:<input type="number" min="1" max="12" value="" placeholder="1" name="search[month]" class="input-group mt-2" />
+    日:<input type="number" min="1" max="31" value="" placeholder="1" name="search[day]" class="input-group mt-2" />
     性別:<input type="text" value="" placeholder="sex" name="search[sex]" class="input-group mt-2" />
     <%= submit_tag '送信', class: 'btn btn-danger mt-2' %>
   <% end %>
