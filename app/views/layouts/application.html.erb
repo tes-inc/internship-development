@@ -7,11 +7,31 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">生年月日カルテ</a>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-0">
+      <a href="#"><img src="Crystal.png" /></a>
+
+        <ul class="list-inline table btn-group py-0">
+          <li class="nav-item text-nowrap py-0">
+            <button type="button"class="btn btn-dark py-0" >
+              <a class="nav-link" href="/">Home</a>
+            </button>
+          </li>
+          <li class="nav-item text-nowrap py-0">
+            <button type="button" class="btn btn-dark py-0 ">
+              <a class="nav-link" href=<%= searches_path %>>生年月日入力</a>
+            </button>
+          </li>
+          <li class="nav-item text-nowrap py-0">
+            <button type="button" class="btn btn-dark py-0" >
+              <a class="nav-link" href="/favorite">お気に入り</a>
+            </button>
+          </li>
+        </ul>
+
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#">Sign out</a>
