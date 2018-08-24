@@ -12,7 +12,7 @@
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-0">
-      <a href="#"><img src="Crystal.png" /></a>
+      <%= image_tag 'Crystal.png' %>
 
       <a class="nav-link" href="/">Home</a>
       <a class="nav-link" href=<%= searches_path %>>生年月日入力</a>
@@ -21,7 +21,6 @@
 
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-link'  %> 
         </li>
       </ul>
@@ -56,5 +55,6 @@
         <%= yield %>
       </div>
     </div>
+
   </body>
 </html>
