@@ -25,13 +25,21 @@ class SearchesController < ApplicationController
     uri = URI.parse(api_path)
     json = Net::HTTP.get(uri)
 
-    path = Rails.root.join('tmp', 'cache', Time.now.to_i.to_s + '.json')
-    File.open(path, 'w+') do |f|
-      f.write(json)
-    end
 
-    session[:result] = path
-    redirect_to action: :result, year: year, month: month, day: day, sex: sex
+    path = Rails.root.join('tmp', 'cache', year + month + day + sex + '.json')
+    if !year.blank? && !month.blank? && !day.blank? && !sex.blank? then
+      File.open(path, 'w+') do |f|
+      Dir.glob('tmp/cache/*.json').each do |j|
+        if f != j then
+        f.write(json)
+      end
+    end
+      session[:result] = path
+      redirect_to action: :result, year: year, month: month, day: day, sex: sex
+    end
+    else
+      redirect_to root_path
+    end
   end
 
   def create
