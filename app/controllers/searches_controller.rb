@@ -48,3 +48,4 @@ end
       sex: params.to_unsafe_h['favorite']['sex']).save!
     redirect_to root_path
 end
+end
