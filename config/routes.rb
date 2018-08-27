@@ -13,9 +13,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :favorite
+  resources :favorite do
+    collection do
+      get :edit
+      post :destroy
+    end
+  end
   
   # resorces :posts
 
   root to: 'home#index'
-end
+    end
