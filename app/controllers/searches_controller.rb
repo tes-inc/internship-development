@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
     day = params['search']['day']
     sex = params['search']['sex']
     key = ENV['API_KEY']
-    api_path = "http://b-karte.biz/api/karte/diagnosis_result?year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
+    api_path = "http://b-karte.biz/api/karte/diagnosis_result ?year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
 
     uri = URI.parse(api_path)
     json = Net::HTTP.get(uri)
