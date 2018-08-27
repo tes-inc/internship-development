@@ -25,22 +25,18 @@ class SearchesController < ApplicationController
     uri = URI.parse(api_path)
     json = Net::HTTP.get(uri)
 
-
-    path = Rails.root.join('tmp', 'cache', year + month + day + sex + '.json')
-    if !year.blank? && !month.blank? && !day.blank? && !sex.blank? then
-      File.open(path, 'w+') do |f|
-      Dir.glob('tmp/cache/*.json').each do |j|
-        if f != j then
-        f.write(json)
+    if [year, month, day, sex].all? { |value| value.present? }
+      path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
+      unless File.exists?(path) then
+        File.open(path, 'w+') { |f| f.write(json) }
+        session[:result] = path
       end
-    end
-      session[:result] = path
       redirect_to action: :result, year: year, month: month, day: day, sex: sex
-    end
     else
       redirect_to root_path
+      return
     end
-  end
+end
 
   def create
     Favorite.new(
@@ -51,5 +47,4 @@ class SearchesController < ApplicationController
       day: params.to_unsafe_h['favorite']['day'],
       sex: params.to_unsafe_h['favorite']['sex']).save!
     redirect_to root_path
-  end
 end
