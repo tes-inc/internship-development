@@ -8,10 +8,12 @@ class SearchesController < ApplicationController
 
   def result
     @result = JSON.parse(File.read(session[:result]))
+    @name = params[:name]
     @year = params[:year]
     @month = params[:month]
     @day = params[:day]
     @sex = params[:sex]
+    @favorite = Favorite.new
   end
 
   def diagnosis
@@ -20,7 +22,7 @@ class SearchesController < ApplicationController
     day = params['search']['day']
     sex = params['search']['sex']
     key = ENV['API_KEY']
-    api_path = "http://b-karte.biz/api/karte/diagnosis_result ?year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
+    api_path = "http://b-karte.biz/api/karte/diagnosis_result?year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
 
     uri = URI.parse(api_path)
     json = Net::HTTP.get(uri)
@@ -40,13 +42,18 @@ class SearchesController < ApplicationController
 end
 
   def create
-    Favorite.new(
+
+    @favorite = Favorite.new(
       user_id: current_user.id,
       name: params.to_unsafe_h['favorite']['name'],
       year: params.to_unsafe_h['favorite']['year'],
       month: params.to_unsafe_h['favorite']['month'],
       day: params.to_unsafe_h['favorite']['day'],
-      sex: params.to_unsafe_h['favorite']['sex']).save!
-    redirect_to root_path
-  end
+      sex: params.to_unsafe_h['favorite']['sex'])
+      if @favorite.save
+        redirect_to root_path
+      else
+        redirect_to action: :result
+      end
+end
 end
