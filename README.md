@@ -49,3 +49,6 @@ https://docs.docker.com/toolbox/toolbox_install_windows/ <br>
 ### データベース作成
 
     $ docker-compose run web rake db:create
+
+## スクリプト
+$bash Start.bash

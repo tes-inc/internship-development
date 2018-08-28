@@ -12,48 +12,51 @@
 
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-0">
-      <a href="#"><img src="Crystal.png" /></a>
+      <%= image_tag 'Crystal.png' %>
 
       <a class="nav-link" href="/">Home</a>
       <a class="nav-link" href=<%= searches_path %>>生年月日入力</a>
       <a class="nav-link" href="/favorite">お気に入り</a>
-      <a class="nav-link" href="">about</a>
+
+
+<div>
+      <a href="about" class="nav-link btn" data-toggle="modal" data-target="#myModal" >about</a>
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+
+          <div class="modal-content">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+            </div>
+
+            <div class="modal-header">
+              <h4 class="modal-title">だいせいかい</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+
+            <div class="modal-body">Modal内容</div>
+
+          </div>
+
+        </div>
+      </div>
+</div>
+
+
+
 
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-link'  %> 
         </li>
       </ul>
     </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="/">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                  Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href=<%= searches_path %>>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                  生年月日入力
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/favorite">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                    お気に入り
-                  </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
         <%= yield %>
       </div>
     </div>
+
   </body>
 </html>
