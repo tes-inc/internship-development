@@ -8,10 +8,12 @@ class SearchesController < ApplicationController
 
   def result
     @result = JSON.parse(File.read(session[:result]))
+    @name = params[:name]
     @year = params[:year]
     @month = params[:month]
     @day = params[:day]
     @sex = params[:sex]
+    @favorite = Favorite.new
   end
 
   def diagnosis
@@ -25,23 +27,33 @@ class SearchesController < ApplicationController
     uri = URI.parse(api_path)
     json = Net::HTTP.get(uri)
 
-    path = Rails.root.join('tmp', 'cache', Time.now.to_i.to_s + '.json')
-    File.open(path, 'w+') do |f|
-      f.write(json)
-    end
+    if [year,month,day,sex].all? { |item| item.present? } then
 
+    path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
+
+    unless File.exists?(path) then
+    File.open(path, 'w+') { |f| f.write(json) }
+  end
     session[:result] = path
     redirect_to action: :result, year: year, month: month, day: day, sex: sex
+  else
+    redirect_to root_path
   end
+end
 
   def create
-    Favorite.new(
+
+    @favorite = Favorite.new(
       user_id: current_user.id,
       name: params.to_unsafe_h['favorite']['name'],
       year: params.to_unsafe_h['favorite']['year'],
       month: params.to_unsafe_h['favorite']['month'],
       day: params.to_unsafe_h['favorite']['day'],
-      sex: params.to_unsafe_h['favorite']['sex']).save!
-    redirect_to root_path
-  end
+      sex: params.to_unsafe_h['favorite']['sex'])
+      if @favorite.save
+        redirect_to root_path
+      else
+        redirect_to action: :result
+      end
+end
 end
