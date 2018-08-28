@@ -1,5 +1,6 @@
 require 'net/https'
 
+
 class SearchesController < ApplicationController
   before_action :authenticate_user!
 
