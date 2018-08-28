@@ -20,22 +20,23 @@ class SearchesController < ApplicationController
     day = params['search']['day']
     sex = params['search']['sex']
     key = ENV['API_KEY']
-    api_path = "http://b-karte.biz/api/karte/diagnosis_result ?year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
+    api_path = "http://b-karte.biz/api/karte/diagnosis_result?year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
 
     uri = URI.parse(api_path)
     json = Net::HTTP.get(uri)
 
-    if [year, month, day, sex].all? { |value| value.present? }
-      path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
-      unless File.exists?(path) then
-        File.open(path, 'w+') { |f| f.write(json) }
-        session[:result] = path
-      end
-      redirect_to action: :result, year: year, month: month, day: day, sex: sex
-    else
-      redirect_to root_path
-      return
-    end
+    if [year,month,day,sex].all? { |item| item.present? } then
+
+    path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
+
+    unless File.exists?(path) then
+    File.open(path, 'w+') { |f| f.write(json) }
+  end
+    session[:result] = path
+    redirect_to action: :result, year: year, month: month, day: day, sex: sex
+  else
+    redirect_to root_path
+  end
 end
 
   def create
@@ -47,5 +48,5 @@ end
       day: params.to_unsafe_h['favorite']['day'],
       sex: params.to_unsafe_h['favorite']['sex']).save!
     redirect_to root_path
-end
+  end
 end
