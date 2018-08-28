@@ -50,6 +50,9 @@
     <input type="hidden" value="<%= @month %>" name="favorite[month]" />
     <input type="hidden" value="<%= @day %>" name="favorite[day]" />
     <input type="hidden" value="<%= @sex %>" name="favorite[sex]" />
+    <% @favorite.errors.full_messages.each do |message| %>
+    <%= message %>
+    <% end %>
     <input type="text" value="" placeholder="name" name="favorite[name]" class="input-group mt-2" />
     <%= submit_tag 'お気に入り保存', class: 'btn btn-danger mt-2' %>
   <% end %>
