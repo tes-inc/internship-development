@@ -8,10 +8,12 @@ class SearchesController < ApplicationController
 
   def result
     @result = JSON.parse(File.read(session[:result]))
+    @name = params[:name]
     @year = params[:year]
     @month = params[:month]
     @day = params[:day]
     @sex = params[:sex]
+    @favorite = Favorite.new
   end
 
   def diagnosis
@@ -40,13 +42,18 @@ class SearchesController < ApplicationController
 end
 
   def create
-    Favorite.new(
+
+    @favorite = Favorite.new(
       user_id: current_user.id,
       name: params.to_unsafe_h['favorite']['name'],
       year: params.to_unsafe_h['favorite']['year'],
       month: params.to_unsafe_h['favorite']['month'],
       day: params.to_unsafe_h['favorite']['day'],
-      sex: params.to_unsafe_h['favorite']['sex']).save!
-    redirect_to root_path
-  end
+      sex: params.to_unsafe_h['favorite']['sex'])
+      if @favorite.save
+        redirect_to root_path
+      else
+        redirect_to action: :result
+      end
+end
 end
