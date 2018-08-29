@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   resources :favorite do
     collection do
       get :edit
-      post :destroy
+
+      post :delete
     end
   end
   
