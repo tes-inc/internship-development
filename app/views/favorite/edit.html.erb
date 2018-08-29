@@ -26,7 +26,7 @@
             </td>
             <td><%= favorite.year %>/<%= favorite.month %>/<%= favorite.day %></td>
             <td>
-                <%= form_tag('/favorite/delete') do %>
+              <%= form_tag('/favorite/delete') do %>
                 <input type="hidden" value="<%= favorite.id %>" name="id" />
                 <%= submit_tag '削除', class: 'btn btn-danger mt-2' %>
               <% end %>

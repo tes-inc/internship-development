@@ -11,12 +11,15 @@ class FavoriteController < ApplicationController
 
   def delete
     @favorites = Favorite.find_by(params[:id])
+    @id = params[:id]
+
+    p "#{@favorites},(#{@id})"
 
     @favorites.destroy
 
-    p "#{@favorites}"
+    p "#{@favorites} ,(#{@id})Delete."
 
-    redirect_to action: :index
+    redirect_to action: :edit
 
   end
 
