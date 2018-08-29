@@ -10,7 +10,7 @@ class FavoriteController < ApplicationController
   end 
 
   def delete
-    @favorites = Favorite.find_by(params[:id])
+    @favorites = params[:id]
     @id = params[:id]
 
     p "#{@favorites},(#{@id})"
