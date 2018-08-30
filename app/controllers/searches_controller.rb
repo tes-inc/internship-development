@@ -15,6 +15,9 @@ class SearchesController < ApplicationController
     @day = params[:day]
     @sex = params[:sex]
     @favorite = Favorite.new
+
+    @URL = "result?day=#{@day}&month=#{@month}&sex=#{@sex}&year=#{@year}"
+
   end
 
   def diagnosis
@@ -30,10 +33,11 @@ class SearchesController < ApplicationController
 
     if [year,month,day,sex].all? { |item| item.present? } then
 
-    path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
+      path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
       unless File.exists?(path) then
         File.open(path, 'w+') { |f| f.write(json) }
       end
+
       session[:result] = path
       redirect_to action: :result, year: year, month: month, day: day, sex: sex
     else
@@ -57,7 +61,5 @@ class SearchesController < ApplicationController
       else
         redirect_to action: :result
       end
-
   end
-
 end

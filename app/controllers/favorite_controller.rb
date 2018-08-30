@@ -1,6 +1,6 @@
 class FavoriteController < ApplicationController
   before_action :authenticate_user!
-
+  
   def index
     @favorites = Favorite.where(user_id: current_user.id)
   end
@@ -10,13 +10,14 @@ class FavoriteController < ApplicationController
   end 
 
   def delete
-    id = params['id']
-    @favoriteuser = Favorite.find(id)
-    p @favoriteuser
-  
-    @favoriteuser.destroy
+    @favorites = Favorite.find_by(params[:id])
+    @id = params[:id]
 
-    p "#{@favoriteuser} ,(#{@id})Delete."
+    p "#{@favorites},(#{@id})"
+
+    @favorites.destroy
+
+    p "#{@favorites} ,(#{@id})Delete."
 
     redirect_to action: :edit
 
