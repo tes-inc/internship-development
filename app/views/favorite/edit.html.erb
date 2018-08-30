@@ -2,6 +2,7 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2">削除</h1>
   </div>
+
    <div class="table-responsive">
     <table class="table table-striped table-sm">
       <thead>
@@ -9,9 +10,12 @@
           <th>#</th>
           <th>名前</th>
           <th>生年月日</th>
+          <th></th>
         </tr>
-      </tkhead>
+      </thead>
+
       <tbody>
+
         <% @favorites.each do |favorite| %>
           <tr>
             <td><%= favorite.id %></td>
@@ -21,11 +25,16 @@
                 method: :post %>
             </td>
             <td><%= favorite.year %>/<%= favorite.month %>/<%= favorite.day %></td>
-            <td><%= link_to("削除","/favorite/destroy", class: 'btn btn-danger mt-2')%></td>
+            <td>
+              <%= form_tag('/favorite/delete') do %>
+                <input type="hidden" value="<%= favorite.id %>" name="id" />
+                <%= submit_tag '削除', class: 'btn btn-danger mt-2' %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
         
       </tbody>
     </table>
   </div>
-</main> 
+</main>

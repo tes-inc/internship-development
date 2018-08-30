@@ -10,23 +10,25 @@
           <th>#</th>
           <th>名前</th>
           <th>生年月日</th>
+          
         </tr>
       </thead>
       
       <tbody>
-        <% index = 1 %>
+
         <% @favorites.each do |favorite| %>
           <tr>
-            <td><%= index %></td>
+            <td><%= favorite.id %></td>
             <td>
               <%= link_to favorite.name,
                 diagnosis_searches_path(search: { year: favorite.year, month: favorite.month, day: favorite.day, sex: favorite.sex}),
                 method: :post %>
             </td>
             <td><%= favorite.year %>/<%= favorite.month %>/<%= favorite.day %></td>
+
           </tr>
-          <% index += 1 %>
         <% end %>
+        
       </tbody>
     </table>
     
