@@ -1,44 +1,40 @@
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 pb-5 mr-auto">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">検索結果</h1>
+    <h1 class="h2">診断結果</h1>
   </div>
 
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">内面</label>
-    <div class="col-sm-10">
-      <%= simple_format @result['Gift']['in'] %>
-      <%= simple_format @result['Sense']['in'] %>
+    <label for="inputEmail3" class="col-sm-2 col-form-label bg-info text-white">内面</label>
+    <div class="col-sm-10 border border-info">
       <%= simple_format @result['Value']['Sense']['In'] %>
       <%= simple_format @result['Value']['Gift']['In'] %>
       <%= simple_format @result['Value']['Cycle']['In'] %>
     </div>
   </div>
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">外面</label>
-    <div class="col-sm-10">
-      <%= simple_format @result['Gift']['out'] %>
-      <%= simple_format @result['Sense']['out'] %>
+    <label for="inputEmail3" class="col-sm-2 col-form-label bg-success text-white">外面</label>
+    <div class="col-sm-10 border border-success">
       <%= simple_format @result['Value']['Gift']['Out'] %>
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">大切にしているもの</label>
-    <div class="col-sm-10">
+    <label for="inputEmail3" class="col-sm-2 col-form-label bg-primary text-white">大切にしているもの</label>
+    <div class="col-sm-10 border border-primary">
       <%= simple_format @result['Value']['Contents']['1']['ContentsData'] %>
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">こう言われると嬉しい</label>
-    <div class="col-sm-10">
+    <label for="inputEmail3" class="col-sm-2 col-form-label bg-warning text-white">こう言われると嬉しい</label>
+    <div class="col-sm-10 border border-warning">
       <%= simple_format @result['Value']['Contents']['2']['ContentsData'] %>
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">これを言われると深く傷つく</label>
-    <div class="col-sm-10">
+    <label for="inputEmail3" class="col-sm-2 col-form-label bg-danger text-white">これを言われると深く傷つく</label>
+    <div class="col-sm-10 border border-danger">
       <%= simple_format @result['Value']['Contents']['3']['ContentsData'] %>
     </div>
   </div>

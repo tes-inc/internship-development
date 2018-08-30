@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <title>BirthdayKarte</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,9 +19,10 @@
   </head>
 
   <body>
+    
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-0">
-      <%= image_tag 'Crystal.png' %>
-
+      
+      <p class="text-white h3"><%= image_tag 'Crystal.png' %><span class="h2 text-primary">B</span>irthday<span class="h2 text-primary">K</span>arte</p>
       <a class="nav-link" href="/">ホーム</a>
       <a class="nav-link" href=<%= searches_path %>>生年月日入力</a>
       <a class="nav-link" href="/favorite">お気に入り</a>
@@ -37,7 +40,6 @@
           気になる誰かの生年月日から！</br>
           性格、言われて嬉しい言葉、嫌な言葉を占います！</br>
           また、診断結果はお気に入りに保存できますので忘れてしまう心配も無用！</br></br>
-          
           <ul>
             <li>ホーム：ホーム画面に飛びます。</li>
             <li>生年月日入力：生年月日から占いができます。</li>
@@ -52,7 +54,6 @@
       </div>
     </div>
   </div>
-
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-link'  %> 

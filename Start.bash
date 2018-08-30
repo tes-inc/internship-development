@@ -1,3 +1,4 @@
+rm -rf tmp/pids/*
 docker-machine.exe start default
 docker-machine.exe env default
 eval $("C:\Program Files\Docker Toolbox\docker-machine.exe" env default)

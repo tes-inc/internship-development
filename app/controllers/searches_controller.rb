@@ -43,10 +43,11 @@ class SearchesController < ApplicationController
     else
       redirect_to root_path
     end
+
   end
 
   def create
-
+    
     @favorite = Favorite.new(
       user_id: current_user.id,
       name: params.to_unsafe_h['favorite']['name'],
@@ -54,6 +55,7 @@ class SearchesController < ApplicationController
       month: params.to_unsafe_h['favorite']['month'],
       day: params.to_unsafe_h['favorite']['day'],
       sex: params.to_unsafe_h['favorite']['sex'])
+
       if @favorite.save
         redirect_to root_path
       else
