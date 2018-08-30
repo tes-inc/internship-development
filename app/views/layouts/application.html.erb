@@ -31,7 +31,6 @@
           気になる誰かの生年月日から！</br>
           性格、言われて嬉しい言葉、嫌な言葉を占います！</br>
           また、診断結果はお気に入りに保存できますので忘れてしまう心配も無用！</br></br>
-          
           <ul>
             <li>ホーム：ホーム画面に飛びます。</li>
             <li>生年月日入力：生年月日から占いができます。</li>
@@ -46,14 +45,12 @@
       </div>
     </div>
   </div>
-
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'navbar-link'  %> 
         </li>
       </ul>
     </nav>
-
     <div class="container-fluid">
       <div class="row">
         <%= yield %>
