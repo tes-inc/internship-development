@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <title>BirthdayKarte</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,24 +13,25 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
       <%= image_tag 'Crystal.png' %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
+      
+      <div class="collapse navbar-collapse mx-auto" id="navbarsExampleDefault">
+        <ul class="navbar-nav " align="right">
           <li class="nav-item active">
             <a class="nav-link" href="/">ホーム</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-items active">
             <a class="nav-link" href=<%= searches_path %>>生年月日入力</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/favorite">お気に入り</a>
           </li>
-          <li class="nav-item">
+      
+          <li class="nav-item active">
             <a href="" class="nav-link" data-toggle="modal" data-target="#aboutModal" >このサイトについて</a></li>
             <div class="modal fade" id="aboutModal" data-backdrop="false">
               <div class="modal-dialog">
@@ -56,14 +59,15 @@
                 </div>
               </div>
             </div>
-          <li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link'  %>
+    
+          <li class="nav-item active">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link'  %> 
           </li>
         </ul>
       </div>
     </nav>
-
+  </div>
+    
     <div class="container-fluid">
       <div class="row">
         <%= yield %>
