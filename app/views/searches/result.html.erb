@@ -51,4 +51,7 @@
     <input type="text" value="" placeholder="name" name="favorite[name]" class="input-group mt-2" />
     <%= submit_tag 'お気に入り保存', class: 'btn btn-danger mt-2' %>
   <% end %>
+
+  <a href="http://twitter.com/intent/tweet?text=内面 <%= @result['Gift']['in'] %> !?&url=http://192.168.99.100:3000/searches/<%= @URL %>&hashtags=BirthdayKarte&via=yuu_uni1211 "><%= image_tag 'twitter.png' %></a>
+
 </main>
