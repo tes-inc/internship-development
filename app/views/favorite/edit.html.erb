@@ -24,7 +24,7 @@
                 diagnosis_searches_path(search: { year: favorite.year, month: favorite.month, day: favorite.day, sex: favorite.sex}),
                 method: :post %>
             </td>
-            <td class="align-right"><%= favorite.year %>/<%= favorite.month %>/<%= favorite.day %></td>
+            <td><%= favorite.year %>/<%= favorite.month %>/<%= favorite.day %></td>
             <td>
               <%= form_tag('/favorite/delete') do %>
                 <input type="hidden" value="<%= favorite.id %>" name="id" />
