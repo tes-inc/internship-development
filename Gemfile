@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'jquery-rails'
 gem 'devise'
+#rails i18n detach
+gem 'i18n' # For 5.0.x, 5.1.x and 5.2.x
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

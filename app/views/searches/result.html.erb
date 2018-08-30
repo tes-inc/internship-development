@@ -44,6 +44,12 @@
   </div>
 
   <%= form_tag('/searches') do %>
+  <% if @favorite.present? %>
+    <% @favorite.errors.full_messages.each do |message| %>
+    <%= message %>
+    <br>
+    <% end %>
+    <% end %>
     <input type="hidden" value="<%= @year %>" name="favorite[year]" />
     <input type="hidden" value="<%= @month %>" name="favorite[month]" />
     <input type="hidden" value="<%= @day %>" name="favorite[day]" />

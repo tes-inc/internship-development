@@ -9,12 +9,10 @@ class SearchesController < ApplicationController
 
   def result
     @result = JSON.parse(File.read(session[:result]))
-    @name = params[:name]
     @year = params[:year]
     @month = params[:month]
     @day = params[:day]
     @sex = params[:sex]
-    @favorite = Favorite.new
   end
 
   def diagnosis
@@ -22,8 +20,19 @@ class SearchesController < ApplicationController
     month = params['search']['month']
     day = params['search']['day']
     sex = params['search']['sex']
+
+    @check_form = Forms::Searches_form.new(year: params['search']['year'],month: params['search']['month'],day: params['search']['day'],sex: params['search']['sex'])
+    if @check_form.invalid?
+      @year = params['search']['year']
+      @month = params['search']['month']
+      @day = params['search']['day']
+      @sex = params['search']['sex']
+      render :index
+    end
+
     key = ENV['API_KEY']
-    api_path = "http://b-karte.biz/api/karte/diagnosis_result?year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
+    query = "year=#{year}&month=#{month}&day=#{day}&sex=#{sex}&key=#{key}&format=json"
+    api_path = "http://b-karte.biz/api/karte/diagnosis_result?#{query}"
 
     uri = URI.parse(api_path)
     json = Net::HTTP.get(uri)
@@ -37,24 +46,29 @@ class SearchesController < ApplicationController
   end
     session[:result] = path
     redirect_to action: :result, year: year, month: month, day: day, sex: sex
-  else
-    redirect_to root_path
   end
 end
 
   def create
 
+    @year = params.to_unsafe_h['favorite']['year']
+    @month = params.to_unsafe_h['favorite']['month']
+    @day = params.to_unsafe_h['favorite']['day']
+    @sex = params.to_unsafe_h['favorite']['sex']
+    @name = params.to_unsafe_h['favorite']['name']
+
     @favorite = Favorite.new(
       user_id: current_user.id,
-      name: params.to_unsafe_h['favorite']['name'],
-      year: params.to_unsafe_h['favorite']['year'],
-      month: params.to_unsafe_h['favorite']['month'],
-      day: params.to_unsafe_h['favorite']['day'],
-      sex: params.to_unsafe_h['favorite']['sex'])
+      name: @name,
+      year: @year,
+      month: @month,
+      day: @day,
+      sex: @sex)
       if @favorite.save
         redirect_to root_path
       else
-        redirect_to action: :result
+       @result = JSON.parse(File.read(session[:result]))
+       render :result
       end
-end
+  end
 end
