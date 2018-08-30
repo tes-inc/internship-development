@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <title>BirthdayKarte</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +13,7 @@
   </head>
 
   <body>
+    
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap py-0">
       
       <p class="text-white h3"><%= image_tag 'Crystal.png' %><span class="h2 text-primary">B</span>irthday<span class="h2 text-primary">K</span>arte</p>
@@ -51,6 +54,7 @@
         </li>
       </ul>
     </nav>
+
     <div class="container-fluid">
       <div class="row">
         <%= yield %>
