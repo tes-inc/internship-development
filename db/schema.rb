@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_07_09_014145) do
     t.integer "year"
     t.integer "month"
     t.integer "day"
-    t.integer "sex"
+    t.text "sex"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
