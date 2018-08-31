@@ -15,6 +15,9 @@ class SearchesController < ApplicationController
     @day = params[:day]
     @sex = params[:sex]
     @favorite = Favorite.new
+
+    @URL = "result?day=#{@day}&month=#{@month}&sex=#{@sex}&year=#{@year}"
+
   end
 
   def diagnosis
@@ -30,20 +33,21 @@ class SearchesController < ApplicationController
 
     if [year,month,day,sex].all? { |item| item.present? } then
 
-    path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
+      path = Rails.root.join('tmp', 'cache', "#{year}#{month}#{day}#{sex}.json")
+      unless File.exists?(path) then
+        File.open(path, 'w+') { |f| f.write(json) }
+      end
 
-    unless File.exists?(path) then
-    File.open(path, 'w+') { |f| f.write(json) }
+      session[:result] = path
+      redirect_to action: :result, year: year, month: month, day: day, sex: sex
+    else
+      redirect_to root_path
+    end
+
   end
-    session[:result] = path
-    redirect_to action: :result, year: year, month: month, day: day, sex: sex
-  else
-    redirect_to root_path
-  end
-end
 
   def create
-
+    
     @favorite = Favorite.new(
       user_id: current_user.id,
       name: params.to_unsafe_h['favorite']['name'],
@@ -51,10 +55,11 @@ end
       month: params.to_unsafe_h['favorite']['month'],
       day: params.to_unsafe_h['favorite']['day'],
       sex: params.to_unsafe_h['favorite']['sex'])
+
       if @favorite.save
         redirect_to root_path
       else
         redirect_to action: :result
       end
-end
+  end
 end

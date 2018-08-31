@@ -6,14 +6,14 @@
   <h2>生年月日入力</h2>
 
   <%= form_tag('/searches/diagnosis') do %>
-    西暦:<input type="number" min="1880" max="2200" value="" placeholder="1997" name="search[year]" class="input-group" />
-    月:<input type="number" min="1" max="12" value="" placeholder="1" name="search[month]" class="input-group mt-2" />
-    日:<input type="number" min="1" max="31" value="" placeholder="1" name="search[day]" class="input-group mt-2" />
+    西暦:<input type="number" min="1880" max="2200" value="" placeholder="1997" name="search[year]" class="input-group mb-2 col-5" />
+    月:<input type="number" min="1" max="12" value="" placeholder="1" name="search[month]" class="input-group mb-2 col-5" />
+    日:<input type="number" min="1" max="31" value="" placeholder="1" name="search[day]" class="input-group mb-2 col-5" />
     性別：
-    <div align="left">
+    <div align="left" class="mb-2">
       <input type="radio" value="0" placeholder="sex" name="search[sex]"/>男性&nbsp;&nbsp;
       <input type="radio" value="1" placeholder="sex" name="search[sex]"/>女性
     </div>
-    <%= submit_tag '送信', class: 'btn btn-danger mt-2' %>
+    <%= submit_tag '送信', class: 'btn btn-danger mb-2' %>
   <% end %>
 </main>
