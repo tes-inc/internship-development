@@ -1,3 +1,4 @@
+
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 pb-5 mr-auto">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2">診断結果</h1>
@@ -53,6 +54,14 @@
     <input type="text" value="" placeholder="name" name="favorite[name]" class="input-group mt-2" />
     <%= submit_tag 'お気に入り保存', class: 'btn btn-danger mt-2' %>
   <% end %>
-  <a href="http://twitter.com/intent/tweet?text=内面 <%= @result['Gift']['in'] %> !?&url=http://192.168.99.100:3000/searches/<%= @URL %>&hashtags=BirthdayKarte&via=yuu_uni1211 "><%= image_tag 'twitter.png' %></a>
-  <a href="http://www.facebook.com/sharer.php?u=http://192.168.99.100:3000/searches/<%= @URL %>"><%= image_tag 'facebook.png' %></a>
+  <div id="content">
+    <input type="checkbox" class="checkbox" id="share" checked>
+    <label for="share" class="label entypo-export"></label>
+    <div class="social">
+      <ul>
+        <li><a href="http://twitter.com/intent/tweet?text=内面 <%= @result['Gift']['in'] %> !?&url=http://192.168.99.100:3000/searches/<%= @URL %>&hashtags=BirthdayKarte&via=yuu_uni1211 "><%= image_tag 'twitter.png' %></a></li>
+        <li><a href="http://www.facebook.com/sharer.php?u=http://192.168.99.100:3000/searches/<%= @URL %>"><%= image_tag 'facebook.png' %></a></li>
+      </ul>
+    </div>
+  </div>
 </main>

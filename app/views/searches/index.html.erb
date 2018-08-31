@@ -8,13 +8,13 @@
   <%= form_tag('/searches/diagnosis') do %>
   <% if @check_form.present? %>
     <% @check_form.errors.full_messages.each do |message| %>
-    <%= message %>
+    *<%= message %>
     <br>
     <% end %>
     <% end %>
-    西暦:<input type="number" value="<%= @year %>" placeholder="1997" name="search[year]" class="input-group" />
-    月:<input type="number" value="<%= @month %>" placeholder="1" name="search[month]" class="input-group mt-2" />
-    日:<input type="number" value="<%= @day %>" placeholder="1" name="search[day]" class="input-group mt-2" />
+    西暦:<input type="number" min="1900" max="2100" value="<%= @year %>" placeholder="1997" name="search[year]" class="input-group col-5" />
+    月:<input type="number" min="0" max="12" value="<%= @month %>" placeholder="1" name="search[month]" class="input-group mt-2 col-5" />
+    日:<input type="number" min="0" max="31" value="<%= @day %>" placeholder="1" name="search[day]" class="input-group mt-2 col-5" />
     性別：
     <div align="left">
       <label><input type="radio" value="0" placeholder="sex" name="search[sex]"/>男性</label>&nbsp;&nbsp;
